@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User login page</title>
+    <title>Recruiter register page</title>
     <link rel="stylesheet" href='{% static "styles.css" %}' />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -17,7 +17,7 @@
       class="main bg-black flex h-[90vh] w-[70vw] bg-[#0c0c0c] rounded-[16px]"
     >
       <div class="left" style="width: 60%">
-        <form class="" method="POST" enctype="multipart/form-data">
+        <form class="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <!-- CSRF token for security -->
 
@@ -26,11 +26,11 @@
           >
             <div>
               <p class="text-center">Welcome to JobsHub</p>
-              <p>Enter your credentials to access your Account</p>
+              <p>Enter your credentials to create your Account</p>
             </div>
 
-           <a href="/user/register"><button class="bg-blue-500 w-full rounded-md p-2" type="button">
-              Create Your Account
+           <a href="/recruiter/login"><button class="bg-blue-500 w-full rounded-md p-2" type="button">
+			Log in to your account
             </button>
           </a>
 
@@ -41,14 +41,25 @@
             </div>
 
             <div class="inputBox form-group">
+              <div class="flex space-between gap-4">
+              <input type="text" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-[50%] p-2 rounded-md" id="exampleInputEmail1" aria-describedby="emailHelp"
+					placeholder="First name" name="first_name" required>
+
+          <input type="text" name="last_name" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-[50%] p-2 rounded-md"
+		 placeholder="Last name" required>
+          <input type="text" name="company_name" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-[50%] p-2 rounded-md"
+				placeholder="company name" required>
+        </div>
+
+          <input type="text" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-full p-2" id="exampleInputEmail1" name="email"
+					aria-describedby="emailHelp" placeholder="Enter your email address" required>
+
               <input
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
                 class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-full p-2 rounded-md"
                 name="username"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
-                placeholder="Enter username"
+                placeholder="Enter Username"
                 required
               />
               <input
@@ -67,7 +78,7 @@
               <button
               class="bg-blue-500 w-full rounded-md p-2" type="submit"
               >
-                Log In
+              Create Your Account
               </button>
             </div>
 

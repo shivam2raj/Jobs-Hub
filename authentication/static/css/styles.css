@@ -1,0 +1,98 @@
+.div1{
+    height: 56px;
+    width: 58px;
+    background-color: red;
+}
+
+.btn:hover {
+    background-color: red;
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin: 0 10em;
+}
+
+#navbar {
+    height: 5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+#li {
+    display: flex;
+    list-style: none;
+    gap: 3em;
+    align-items: center;
+}
+
+#authButton,#logo {
+    align-self: center;
+}
+
+#section1 {
+    padding-top:4em;
+    height: 80vh;
+    display: flex;
+}
+
+#sec1-left {
+    width: 60%;
+}
+
+#sec1-right {
+    width: 40%;
+    background-color: black;
+}
+
+.large {
+    margin:0;
+    font-size: 6em;
+    line-height:0.9em;
+}
+
+#twobuttons {
+    height: 4em;
+    margin-top: 1em;
+ 
+}
+
+.button-2 {
+    background-color: black;
+    padding: 1em;
+    color: white;
+    border: none;
+    font-weight: 700;
+}
+
+.button-2:hover {
+    background-color: #A10BE8;
+    border-radius: 5px;
+    color: black;
+    
+}
+.button-1 {
+    background-color: #A10BE8;
+    border-radius: 5px;
+    color: black;
+    padding: 1em;
+    border: none;
+    font-weight: 700;  
+}
+
+#search {
+    display: flex;
+}
+
+#threeButtons {
+    width: 90%;
+}
+
+#find {
+    width: 10%;
+}
+
+#logo {
+  margin-top: 15px;
+}

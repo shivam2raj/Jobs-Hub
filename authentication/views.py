@@ -7,67 +7,140 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import *
+from django.contrib.auth.hashers import make_password,check_password
+from .models import Recruiter
 
-# Define a view function for the login page
 def user_login_page(request):
-	# Check if the HTTP request method is POST (form submission)
+
 	if request.method == "POST":
 		username = request.POST.get('username')
 		password = request.POST.get('password')
 		
-		# Check if a user with the provided username exists
+
 		if not User.objects.filter(username=username).exists():
-			# Display an error message if the username does not exist
+
 			messages.error(request, 'Invalid Username')
 			return redirect('/user/login/')
 		
-		# Authenticate the user with the provided username and password
+
 		user = authenticate(username=username, password=password)
 		
-		if user is None:
-			# Display an error message if authentication fails (invalid password)
+		print(user)
+
+		if user:
+
+			login(request, user)
+			return redirect('/')
+		else:
+
 			messages.error(request, "Invalid Password")
 			return redirect('/user/login/')
-		else:
-			# Log in the user and redirect to the home page upon successful login
-			login(request, user)
-			return redirect('')
-	
-	# Render the login page template (GET request)
+
+
 	return render(request, 'user_login.html')
 
-# Define a view function for the registration page
+
 def user_register_page(request):
-	# Check if the HTTP request method is POST (form submission)
+
 	if request.method == 'POST':
 		first_name = request.POST.get('first_name')
 		last_name = request.POST.get('last_name')
+		email = request.POST.get('email')
 		username = request.POST.get('username')
 		password = request.POST.get('password')
 		
-		# Check if a user with the provided username already exists
+
 		user = User.objects.filter(username=username)
 		
 		if user.exists():
-			# Display an information message if the username is taken
+
 			messages.info(request, "Username already taken!")
 			return redirect('/user/register/')
 		
-		# Create a new User object with the provided information
-		user = User.objects.create_user(
+
+		user = Recruiter.objects.create_user(
 			first_name=first_name,
 			last_name=last_name,
+			email=email,
 			username=username
 		)
 		
-		# Set the user's password and save the user object
+
 		user.set_password(password)
 		user.save()
 		
-		# Display an information message indicating successful account creation
 		messages.info(request, "Account created Successfully!")
-		return redirect('')
-	
-	# Render the registration page template (GET request)
+		return redirect('/user/login/')
+
 	return render(request, 'user_reg.html')
+
+def home(request):
+	return render(request, 'home.html')
+
+
+def recruiter_register_page(request):
+    if request.method == "POST":
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        company_name = request.POST.get("company_name")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        if Recruiter.objects.filter(username=username).exists():
+            messages.error(request, "Username is already taken.")
+            return redirect("recruiter_register")
+
+        if Recruiter.objects.filter(email=email).exists():
+            messages.error(request, "Email is already taken.")
+            return redirect("recruiter_register")
+
+        if (
+            first_name
+            and last_name
+			and company_name
+            and username
+            and email
+            and password
+        ):
+            recruiter = Recruiter(
+                username=username,
+                email=email,
+                first_name=first_name,
+                last_name=last_name,
+				company_name=company_name,
+                password=password,
+            )
+            recruiter.save()
+        else:
+            messages.error(request, "fill all the details !!!")
+            return redirect("recruiter_register")
+
+        messages.success(request, "Registration Successful")
+        return redirect("recruiter_login")
+
+    else:
+        return render(request, "recruiter_register.html")
+
+
+def recruiter_login_page(request):
+
+	if request.method == "POST":
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		
+
+		user_exist= Recruiter.objects.get(username=username)
+		if(user_exist and user_exist.password ==password ):
+			return redirect('dashboard')
+		else:
+			return redirect('login')
+			
+
+
+	return render(request, 'recruiter_login.html')
+
+
+
+

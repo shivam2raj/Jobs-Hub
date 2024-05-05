@@ -1,64 +1,102 @@
+<!-- @format -->
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>User Registration Form</title>
-</head>
-<body>
-	<div class="">
-		<!-- Registration form -->
-		<form class="" method="post" enctype="multipart/form-data">
-			{% csrf_token %} <!-- CSRF token for security -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User register page</title>
+    <link rel="stylesheet" href='{% static "styles.css" %}' />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex items-center justify-center bg-[#191a1c] h-[100vh]"
+  >
+    <div
+      class="main bg-black flex h-[90vh] w-[70vw] bg-[#0c0c0c] rounded-[16px]"
+    >
+      <div class="left" style="width: 60%">
+        <form class="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- CSRF token for security -->
 
-			<!-- Registration form heading -->
-			<h1 style="text-align: center;"><span style="color: green;">GeeksforGeeks</span></h1>
-			<h3>Register</h3>
-			<hr>
+          <div
+            class="form-container text-white flex flex-col gap-4 py-[120px] px-[160px]"
+          >
+            <div>
+              <p class="text-center">Welcome to JobsHub</p>
+              <p>Enter your credentials to create your Account</p>
+            </div>
 
-			<!-- Display error/success messages -->
-			{% if messages %}
-			<div class="" role="alert">
-				{% for message in messages %}
-				{{ message }}
-				{% endfor %}
-			</div>
-			{% endif %}
+           <a href="/user/login"><button class="bg-blue-500 w-full rounded-md p-2" type="button">
+			Log in to your account
+            </button>
+          </a>
 
-			<!-- First Name input field -->
-			<div class="form-group">
-				<label for="exampleInputEmail1">First name</label>
-				<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-					placeholder="Enter First name" name="first_name" required>
-			</div>
+            <div class="or flex gap-4">
+              <hr class="w-[40%] h-[2px] self-center" />
+              <p class=''>OR</p>
+              <hr class="w-[40%] h-[2px] self-center" />
+            </div>
 
-			<!-- Last Name input field -->
-			<div class="form-group">
-				<label for="exampleInputEmail1">Last name</label>
-				<input type="text" name="last_name" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="Enter Last name" required>
-			</div>
+            <div class="inputBox form-group">
+              <div class="flex space-between gap-4">
+              <input type="text" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-[50%] p-2 rounded-md" id="exampleInputEmail1" aria-describedby="emailHelp"
+					placeholder="First name" name="first_name" required>
 
-			<!-- Username input field -->
-			<div class="form-group">
-				<label for="exampleInputEmail1">Username</label>
-				<input type="text" class="form-control" name="username" id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="Enter email" required>
-			</div>
+          <input type="text" name="last_name" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-[50%] p-2 rounded-md"
+					aria-describedby="emailHelp" placeholder="Last name" required>
+        </div>
 
-			<!-- Password input field -->
-			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" name="password" id="exampleInputPassword1"
-					placeholder="Password" required>
-			</div>
+          <input type="text" class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-full p-2" id="exampleInputEmail1" name="email"
+					aria-describedby="emailHelp" placeholder="Enter your email address" required>
 
-			<!-- Link to login page for users who already have an account -->
-			<p>Already have an account <a href="/user/login/">Login</a> </p>
+              <input
+                class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-full p-2 rounded-md"
+                name="username"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter Username"
+                required
+              />
+              <input
+                type="password"
+                class="form-control bg-[#191a1c] mb-[16px] border-none text-[#7d7c7c] w-full p-2 rounded-md"
+                id="exampleInputPassword1"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                name="password"
+                required
+              />
+              <p class="text-center text-xs mb-[16px]">
+                forget password
+              </p>
+              <button
+              class="bg-blue-500 w-full rounded-md p-2" type="submit"
+              >
+              Create Your Account
+              </button>
+            </div>
 
-			<!-- Submit button -->
-			<button type="submit" class="">Submit</button>
-		</form>
-	</div>
-</body>
+            <!-- Display error/success messages -->
+            {% if messages %}
+            <div class="p-4 bg-white text-red-500" role="alert">
+              {% for message in messages %} {{ message }} {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+
+      <div class="right w-[40%]">
+        <img
+          src='{% static "/images/img2.png" %}'
+          alt="sm"
+          class="h-[90vh] w-[28vw] rounded-r-[18px]"
+        />
+      </div>
+    </div>
+  </body>
 </html>

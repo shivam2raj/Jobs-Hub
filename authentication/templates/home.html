@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+    <div id="navbar">
+      <div id="logo">
+       <img class="logo1" src="{% static '/images/darkjob.svg' %}">
+    </div>  
+
+      <div id="li">
+        <li>HOME</li>
+        <li>PAGES</li>
+        <li>JOBS</li>
+        <li>CONTACT</li>
+      </div>  
+
+      <div id="authButton">
+    <a href="/recruiter/login">    <button class="button-1" style="padding-left:25px;padding-right:25px">Login</button> </a>
+    <a href="/recruiter/register">  <button class="button-1" style="padding-left:25px;padding-right:25px">Sign up</button> </a>
+      </div>  
+    </div>
+
+    <!-- section1 -->
+    <div id="section1">
+         <div id="sec1-left">
+            <p class="large">FIND YOUR DREAM JOB EASILY</p>
+
+            <div id="twobuttons">
+                <a href="/recruiter/login">    <button class="button-1">I'M HIRING</button> </a>
+                <a href="/recruiter/login">    <button class="button-2">I'M LOOKING FOR A JOB</button> </a>
+            </div>
+
+            <div id="search">
+                <div id="threeInputs">
+                    
+                </div>
+
+                <div id="find"></div>
+            </div>
+         </div>
+
+         <div id="sec1-right">
+          <img src="{% static '/images/group.jpeg' %} " style="height: 80vh; width: 32vw; border-radius:10px">
+         </div>
+    </div>
+</body>
+</html>
