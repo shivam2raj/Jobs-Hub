@@ -97,4 +97,6 @@ def user_profile(request, username):
     return render(request,'user-profile.html', context)
 
 
+def job_list_rec(request):
 
+    return render(request, 'job-list-rec.html')
