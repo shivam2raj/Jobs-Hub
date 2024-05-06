@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserProfile,Jobpost,JobApplication
+from authentication.models import Recruiter
 
 
 # Create your views here.
@@ -49,11 +50,10 @@ def application_list(request):
 
     username = request.user.username
 
-    jobApplications = JobApplication.objects.get(UserApplied=username)
+    jobApplications = JobApplication.objects.filter(UserApplied=username)
 
-    print(jobApplications)
-
-    return render(request,'applicant-list.html', {'jobApplications': jobApplications})
+    context = {'jobApplications': jobApplications}
+    return render(request,'applicant-list.html', context)
 
 
 
