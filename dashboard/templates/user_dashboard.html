@@ -97,30 +97,52 @@
             background-color: #45a049;
         }
     </style>
+    {% block script %}
+    <script>
+        function formatDate(dateString) {
+            var date = new Date(dateString);
+            
+            var year = date.getFullYear();
+            var month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+            var day = date.getDate().toString().padStart(2, '0');
+        
+            var formattedDate = year + '-' + month + '-' + day;
+            
+            return formattedDate;
+        }
+
+        function initializeDateOfBirth() {
+            var dateOfBirthInput = document.querySelector("#date_of_birth");
+            var profileDateOfBirth = "{{ profile.date_of_birth }}";variable
+
+            if (profileDateOfBirth) {
+                var formattedDateOfBirth = formatDate(profileDateOfBirth);
+                dateOfBirthInput.value = formattedDateOfBirth; 
+            }
+        }
+
+        window.onload = function() {
+            initializeDateOfBirth();
+        }
+    </script>
+    {%endblock script%}
 </head>
 <body>
+    
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="/job_list/">Jobs</a></li>
-            <li><a href="/application_list">Applicants</a></li>
-            <li><a href="/create_job/">Create Job Post<a></li>
+            <li><a href="#">Applied Jobs</a></li>
+            <li><a href="/{{user.username}}/user_profile/">Profile</a></li>
 
         </ul>
     </nav>
-    <div class="container">
+    <main>
         {% block content %}
-            <h1>Job Recruitment Dashboard</h1>
-            <div class="card">
-                <h2>Recent Jobs</h2>
-            </div>
-            <div class="card">
-                <h2>Applicant Tracking</h2>
-            </div>
-            <div class="card">
-                <h2>Analytics</h2>
-            </div>
         {% endblock content %}
-    </div>
+
+    </main>
+
 </body>
 </html>

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password,check_password
 from .models import Recruiter
+from dashboard.models import UserProfile
 
 def user_login_page(request):
 
@@ -25,12 +26,10 @@ def user_login_page(request):
 
 		user = authenticate(username=username, password=password)
 		
-		print(user)
-
 		if user:
 
 			login(request, user)
-			return redirect('/')
+			return redirect(f"/{username}/user_dashboard")
 		else:
 
 			messages.error(request, "Invalid Password")
@@ -58,16 +57,17 @@ def user_register_page(request):
 			return redirect('/user/register/')
 		
 
-		user = Recruiter.objects.create_user(
+		user = User.objects.create_user(
 			first_name=first_name,
 			last_name=last_name,
 			email=email,
 			username=username
 		)
 		
-
 		user.set_password(password)
 		user.save()
+
+		UserProfile.objects.create(user= user)
 		
 		messages.info(request, "Account created Successfully!")
 		return redirect('/user/login/')
@@ -130,7 +130,6 @@ def recruiter_login_page(request):
 		password = request.POST.get('password')
 
 		
-
 		user_exist= Recruiter.objects.get(username=username)
 		if(user_exist and user_exist.password ==password ):
 			return redirect('dashboard')
