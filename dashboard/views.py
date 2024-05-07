@@ -6,14 +6,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserProfile,Jobpost,JobApplication
-from authentication.models import Recruiter
+from authentication.models import Recruiters
 
 
 # Create your views here.
-def dashboard(request):
-    return render(request, 'dashboard.html')
+@login_required(login_url="/recruiter/login/")
+def recruiter_dashboard(request, username):
+    user = request.user
+
+    return render(request, 'dashboard.html', {'user': user})
 
 def create_job(request):
+
+    username = request.user.username
+
     if request.method == 'POST':
         title = request.POST.get('title')
         jobDescription = request.POST.get('jobDescription')
@@ -22,19 +28,21 @@ def create_job(request):
         jobtype = request.POST.get('jobtype')
         location = request.POST.get('location')
 
-        Jobpost.objects.create(title=title, jobDescription=jobDescription, jobtype=jobtype, location=location)
+        Jobpost.objects.create(title=title, jobDescription=jobDescription, jobRequirement=jobRequirement, salary=salary, jobtype=jobtype, location=location)
 
-        return redirect('dashboard')
+        return redirect('/' + username + '/recruiter_dashboard')
     return render(request, 'create-job.html')
 
-def job_list(request):
+def job_list(request, username):
 
     jobposts = Jobpost.objects.all()
     username = request.user.username
-    
+
+    user = Recruiters.objects.filter(username=username)
+    print(user)
+
     if request.method == 'POST':
         jobpostid = request.POST.get('JobpostId')
-        print("control reaches here")
 
         if JobApplication.objects.filter(JobpostId=jobpostid, UserApplied=username).exists():
 
@@ -42,7 +50,7 @@ def job_list(request):
         else:
             JobApplication.objects.create(JobpostId=jobpostid, UserApplied=username)   
 
-    context = {'jobposts': jobposts}
+    context = {'jobposts': jobposts, 'user': user}
 
     return render(request,'job-list.html', context)
 
@@ -51,6 +59,7 @@ def application_list(request):
     username = request.user.username
 
     jobApplications = JobApplication.objects.filter(UserApplied=username)
+    print(jobApplications)
 
     context = {'jobApplications': jobApplications}
     return render(request,'applicant-list.html', context)
@@ -95,8 +104,3 @@ def user_profile(request, username):
     context = {'profile': profile, 'user': user}
 
     return render(request,'user-profile.html', context)
-
-
-def job_list_rec(request):
-
-    return render(request, 'job-list-rec.html')

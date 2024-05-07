@@ -26,9 +26,13 @@
                     <strong>Location:</strong> {{ jobpost.location }}<br>
                     <strong>Date:</strong> {{ jobpost.pub_date }}
                     
-                    <input type="hidden" id="JobpostId" name="JobpostId" value={{jobpost.id}}>
-                    <input type="submit" value="Apply">
-
+                    {% for user in user %}
+                        {% if not user.is_staff %}
+                        <input type="hidden" id="JobpostId" name="JobpostId" value={{jobpost.id}}>
+                        <input type="submit" value="Apply">
+                        {% endif %}
+                    {% endfor %}
+                    
                 </form>
 
                 </div>

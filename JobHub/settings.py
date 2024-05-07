@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'dashboard'
     ]
 
-# AUTH_USER_MODEL = 'authentication.Recruiter'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

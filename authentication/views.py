@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password,check_password
-from .models import Recruiter
+from .models import Recruiters
 from dashboard.models import UserProfile
 
 def user_login_page(request):
@@ -39,9 +39,13 @@ def user_login_page(request):
 	return render(request, 'user_login.html')
 
 
-def logout_view(request):
+def user_logout_view(request):
 	logout(request)
 	return redirect("/user/login/")
+
+def recruiter_logout_view(request):
+	logout(request)
+	return redirect("/recruiter/login/")
 
 def user_register_page(request):
 
@@ -91,33 +95,35 @@ def recruiter_register_page(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        if Recruiter.objects.filter(username=username).exists():
+        if User.objects.filter(username=username).exists():
             messages.error(request, "Username is already taken.")
             return redirect("recruiter_register")
 
-        if Recruiter.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             messages.error(request, "Email is already taken.")
             return redirect("recruiter_register")
 
         if (
             first_name
             and last_name
-			and company_name
+            and company_name
             and username
             and email
             and password
         ):
-            recruiter = Recruiter(
-                username=username,
-                email=email,
+            # Corrected variable name from 'recruiters' to 'user'
+            recruiters = Recruiters.objects.create_user(
                 first_name=first_name,
                 last_name=last_name,
-				company_name=company_name,
-                password=password,
+                email=email,
+                username=username,
+                company_name=company_name,
+				is_staff=True 
             )
-            recruiter.save()
+            recruiters.set_password(password)
+            recruiters.save()
         else:
-            messages.error(request, "fill all the details !!!")
+            messages.error(request, "Fill all the details !!!")
             return redirect("recruiter_register")
 
         messages.success(request, "Registration Successful")
@@ -127,19 +133,30 @@ def recruiter_register_page(request):
         return render(request, "recruiter_register.html")
 
 
+
 def recruiter_login_page(request):
 
 	if request.method == "POST":
 		username = request.POST.get('username')
 		password = request.POST.get('password')
-
 		
-		user_exist= Recruiter.objects.get(username=username)
-		if(user_exist and user_exist.password ==password ):
-			return redirect('dashboard')
+
+		if not Recruiters.objects.filter(username=username).exists():
+
+			messages.error(request, 'Invalid Username')
+			return redirect('/recruiter/login/')
+		
+
+		recruiter = authenticate(username=username, password=password)
+		
+		if recruiter:
+
+			login(request, recruiter)
+			return redirect(f"/{username}/recruiter_dashboard")
 		else:
-			return redirect('login')
-			
+
+			messages.error(request, "Invalid Password")
+			return redirect('/recruiter/login/')
 
 
 	return render(request, 'recruiter_login.html')

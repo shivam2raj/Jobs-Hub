@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Recruiter
+from .models import Recruiters
 # Register your models here.
-admin.site.register(Recruiter)
+admin.site.register(Recruiters)
 
 
 
