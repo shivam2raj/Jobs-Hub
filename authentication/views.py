@@ -29,7 +29,7 @@ def user_login_page(request):
 		if user:
 
 			login(request, user)
-			return redirect(f"/{username}/user_dashboard")
+			return redirect(f"/{username}/job_list")
 		else:
 
 			messages.error(request, "Invalid Password")
@@ -152,7 +152,7 @@ def recruiter_login_page(request):
 		if recruiter:
 
 			login(request, recruiter)
-			return redirect(f"/{username}/recruiter_dashboard")
+			return redirect(f"/{username}/job_list_rec")
 		else:
 
 			messages.error(request, "Invalid Password")

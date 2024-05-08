@@ -10,11 +10,11 @@ from authentication.models import Recruiters
 
 
 # Create your views here.
-@login_required(login_url="/recruiter/login/")
-def recruiter_dashboard(request, username):
-    user = request.user
+# @login_required(login_url="/recruiter/login/")
+# def recruiter_dashboard(request, username):
+#     user = request.user
 
-    return render(request, 'dashboard.html', {'user': user})
+#     return render(request, 'dashboard.html', {'user': user})
 
 def create_job(request, username):
 
@@ -33,6 +33,7 @@ def create_job(request, username):
         return redirect('/' + username + '/recruiter_dashboard')
     return render(request, 'create-job.html')
 
+@login_required(login_url="/recruiter/login/")
 def job_list(request, username):
 
     jobposts = Jobpost.objects.all()
@@ -58,27 +59,25 @@ def job_list(request, username):
     return render(request,'job-list.html', context)
 
 
-
 def applied_jobs(request, username):
 
     job_applications = JobApplication.objects.filter(UserApplied=username)
 
     job_posts = Jobpost.objects.filter(id__in=[job_application.JobpostId for job_application in job_applications])
-    print(job_posts)
 
     context = {'jobApplications': job_applications, 'jobPosts': job_posts}
     return render(request, 'applied_jobs.html', context)
 
 
-@login_required(login_url="/user/login/")
-def user_dashboard(request, username):
+# @login_required(login_url="/user/login/")
+# def user_dashboard(request, username):
 
-    user = request.user
-    data = UserProfile.objects.get(user=user)
+#     user = request.user
+#     data = UserProfile.objects.get(user=user)
 
-    context = {'user': user, 'data': data}
+#     context = {'user': user, 'data': data}
 
-    return render(request, 'user_dashboard.html', context)
+#     return render(request, 'user_dashboard.html', context)
 
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
@@ -113,6 +112,7 @@ def user_profile(request, username):
 
     return render(request,'user-profile.html', context)
 
+@login_required(login_url="/recruiter/login/")
 def job_list_rec(request, username):
 
     jobposts = Jobpost.objects.all()
