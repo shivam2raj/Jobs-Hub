@@ -30,7 +30,7 @@ def create_job(request, username):
 
         Jobpost.objects.create(title=title, jobDescription=jobDescription, jobRequirement=jobRequirement, salary=salary, jobtype=jobtype, location=location)
 
-        return redirect('/' + username + '/recruiter_dashboard')
+        return redirect('/' + username + '/job_list_rec')
     return render(request, 'create-job.html')
 
 @login_required(login_url="/recruiter/login/")
@@ -47,9 +47,9 @@ def job_list(request, username):
 
         if JobApplication.objects.filter(JobpostId=jobpostid, UserApplied=username).exists():
             print("control reaches here")
+            messages.error(request, 'User has already applied')
             return redirect('/' + username + '/job_list')
 
-            messages.error(request, 'User has already applied')
         else:
             JobApplication.objects.create(JobpostId=jobpostid, UserApplied=username)
             return redirect('/' + username + '/applied_jobs')
