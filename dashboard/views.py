@@ -36,9 +36,12 @@ def create_job(request, username):
 def job_list(request, username):
 
     jobposts = Jobpost.objects.all()
+    print(jobposts)
     username = request.user.username
 
     users = User.objects.filter(username=username)
+    job_applications = JobApplication.objects.filter(UserApplied=username)
+    
     if request.method == 'POST':
         jobpostid = request.POST.get('JobpostId')
 
@@ -49,7 +52,7 @@ def job_list(request, username):
             JobApplication.objects.create(JobpostId=jobpostid, UserApplied=username)
             return redirect('/' + username + '/applied_jobs')
 
-    context = {'jobposts': jobposts, 'users': users}
+    context = {'jobposts': jobposts, 'users': users, 'jobapplications': job_applications}
 
     return render(request,'job-list.html', context)
 

@@ -26,7 +26,7 @@
                   <!-- Active Link = text-indigo-500
                   Inactive Link = hover:text-indigo-500 -->
                   <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="/{{user.username}}/recruiter_dashboard">Dashboard</a></li>
-                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="/{{user.username}}/job_list/">Explore Jobs</a></li>
+                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="/{{user.username}}/job_list_rec/">Explore Jobs</a></li>
                   <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="#">About</a></li>
                   <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="#">Contact</a></li>
               </ul>
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div id="menu" class="flex flex-col space-y-2 mt-6">
-          <a href=""
+          <a href="/{{user.username}}/recruiter_dashboard"
             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out">
             <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -142,14 +142,3 @@
     </div>  
 </body>
 </html>
-
-{% comment %} <nav>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="/{{user.username}}/job_list/">Jobs</a></li>
-        <li><a href="/application_list">Applicants</a></li>
-        <li><a href="/create_job/">Create Job Post<a></li>
-        <li><a href="/recruiter/logout/">Log out<a></li>
-
-    </ul>
-</nav> {% endcomment %}
