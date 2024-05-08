@@ -16,7 +16,7 @@ def recruiter_dashboard(request, username):
 
     return render(request, 'dashboard.html', {'user': user})
 
-def create_job(request):
+def create_job(request, username):
 
     username = request.user.username
 
@@ -107,3 +107,13 @@ def user_profile(request, username):
     context = {'profile': profile, 'user': user}
 
     return render(request,'user-profile.html', context)
+
+def job_list_rec(request, username):
+
+    jobposts = Jobpost.objects.all()
+    username = request.user.username
+
+    users = User.objects.filter(username=username)
+
+    context = {'jobposts': jobposts, 'users': users}
+    return render(request,'job-list-rec.html', context)

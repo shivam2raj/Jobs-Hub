@@ -1,85 +1,32 @@
 {% extends "dashboard.html" %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Posting Form</title>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-{% block content %}
-<h1>Job Posts</h1>
+
+    {% block content %}
+    <div class="container ml-40">
 
     {% csrf_token %}
     <form action="" method="POST">
         {% csrf_token %}
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
+        <div class="heading text-center font-bold text-2xl m-5 text-gray-800 bg-white">Create New Job Post</div>
+        <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+            <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text" id="title" name="title" required>
 
-        <label for="jobDescription">Job Description:</label>
-        <textarea id="jobDescription" name="jobDescription" rows="4" required></textarea>
+            <textarea class="description bg-gray-100 sec p-3 h-30 border border-gray-300 mb-4 outline-none" spellcheck="false"  name="jobDescription" placeholder="Describe everything about job here"></textarea>
 
-        <label for="jobRequirement">Job Requirement:</label>
-        <input type="text" id="jobRequirement" name="jobRequirement" required>
+            <input type="text" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false"  id="jobRequirement" name="jobRequirement" placeholder="Describe the requirement of job" required>
+            
+            <input type="number" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false"  id="salary" name="salary" placeholder="Salary" required>
 
-        <label for="Salary">Salary:</label>
-        <input type="text" id="salary" name="salary" required>
+            <input type="text" id="jobtype" name="jobtype" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Job Type" required>
 
-        <label for="jobtype">Job Type:</label>
-        <input type="text" id="jobtype" name="jobtype" required>
+            <input type="text" id="location" name="location" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Location" required>
+            <!-- Button -->
+            <div class="buttons flex justify-end">
+                <div class="btn border border-indigo-500 p-1 px-4 mt-2 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"><input class="bg-indigo-500" type="submit" value="Post"></div>
+            </div>
+        </div>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required>
-
-        <input type="submit" value="Submit">
     </form>
    
-{% endblock content %}
 </div>
-</body>
-</html>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "dashboard.html" %}
+
+    {% block content %}
+    <h1 class="text-2xl leading-snug font-extrabold text-black truncate mb-4 ml-4 sm:mb-0">Job Posts</h1>
+
+        {% for jobpost in jobposts %}
+ 
+            <!-- Card -->
+        <div class="flex flex-col ml-40 ">
+            <div class=" w-[50vw] mx-auto bg-[#A10BE8] shadow-lg rounded-lg mb-4">
+                <div class="px-6 py-5">
+                    <div class="flex items-start">
+                        <!-- Icon -->
+                        <svg class="fill-current flex-shrink-0 mr-5" width="30" height="30" viewBox="0 0 30 30">
+                            <path class="text-indigo-300" d="m16 14.883 14-7L14.447.106a1 1 0 0 0-.895 0L0 6.883l16 8Z" />
+                            <path class="text-indigo-200" d="M16 14.619v15l13.447-6.724A.998.998 0 0 0 30 22V7.619l-14 7Z" />
+                            <path class="text-indigo-500" d="m16 14.619-16-8V21c0 .379.214.725.553.895L16 29.619v-15Z" />
+                        </svg>
+                        <!-- Card content -->
+                        <div class="flex-grow truncate">
+                            <!-- Card header -->
+                            <div class="w-full sm:flex justify-between items-center mb-3">
+                                <!-- Title -->
+                                <h2 class="text-xl leading-snug font-extrabold text-gray-50 truncate mb-1 sm:mb-0">{{jobpost.title}}</h2>
+                                <h2 class="text-md leading-snug font-extrabold text-gray-50 truncate mb-1 sm:mb-0">Salary- {{jobpost.salary}}</h2>
+                               
+                            </div>
+                            <!-- Card body -->
+                            <div class="flex items-end justify-between whitespace-normal">
+                                <!-- Paragraph -->
+                                <div class="max-w-md text-indigo-100">
+                                    <p class="mb-2">{{jobpost.jobDescription}}.</p>
+                                </div>
+                                <!-- More link -->
+
+                            </div>
+
+                            <div class="w-full flex justify-between mt-4 ">
+                                <h2 class="text-sm leading-snug font-bold text-gray-50 truncate mb-1 sm:mb-0"       >Location: {{jobpost.location}}</h2>
+                        <h2 class="text-sm leading-snug font-bold text-gray-50 truncate mb-1 sm:mb-0">Type: {{jobpost.jobtype}} </h2>
+                                <h2 class="text-xs leading-snug self-end font-bold text-gray-50 truncate mb-1 sm:mb-0" >Created on {{jobpost.pub_date}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+            </div>
+        </div>
+        {% endfor %}
+
+                    
+                </form>
+
+                </div>
+    {% endblock content %}
+    
