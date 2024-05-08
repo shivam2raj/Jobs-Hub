@@ -21,11 +21,14 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=255,null=True,blank=True)
+    age = models.IntegerField(null=True)
     date_of_birth = models.DateField(null=True,blank=True)
     education = models.TextField(null=True,blank=True)
     work_experience = models.TextField(null=True,blank=True)
     skills = models.TextField(null=True,blank=True)
     certifications = models.TextField(null=True,blank=True)
+    phone_number = models.CharField(null=True, max_length=20)
+    bio = models.CharField(null=True, max_length=200)
     cv = models.FileField(upload_to='cv/%Y/%m/%d',null=True,blank=True)
 
     def __str__(self):

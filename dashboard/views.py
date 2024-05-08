@@ -38,9 +38,7 @@ def job_list(request, username):
     jobposts = Jobpost.objects.all()
     username = request.user.username
 
-    user = Recruiters.objects.filter(username=username)
-    print(user)
-
+    users = User.objects.filter(username=username)
     if request.method == 'POST':
         jobpostid = request.POST.get('JobpostId')
 
@@ -48,22 +46,23 @@ def job_list(request, username):
 
             messages.error(request, 'User has already applied')
         else:
-            JobApplication.objects.create(JobpostId=jobpostid, UserApplied=username)   
+            JobApplication.objects.create(JobpostId=jobpostid, UserApplied=username)
+            return redirect('/' + username + '/applied_jobs')
 
-    context = {'jobposts': jobposts, 'user': user}
+    context = {'jobposts': jobposts, 'users': users}
 
     return render(request,'job-list.html', context)
 
-def application_list(request):
 
-    username = request.user.username
 
-    jobApplications = JobApplication.objects.filter(UserApplied=username)
-    print(jobApplications)
+def applied_jobs(request, username):
 
-    context = {'jobApplications': jobApplications}
-    return render(request,'applicant-list.html', context)
+    job_applications = JobApplication.objects.filter(UserApplied=username)
 
+    job_posts = Jobpost.objects.filter(id__in=[job_application.JobpostId for job_application in job_applications])
+
+    context = {'jobApplications': job_applications, 'jobPosts': job_posts}
+    return render(request, 'applied_jobs.html', context)
 
 
 @login_required(login_url="/user/login/")
@@ -81,23 +80,27 @@ def user_profile(request, username):
     profile = get_object_or_404(UserProfile, user=user)
     if request.method == 'POST':
         address = request.POST.get('address')
-        # date_of_birth = request.POST.get('date_of_birth')
+        age = request.POST.get('age')
         education = request.POST.get('education')
         work_experience = request.POST.get('work_experience')
         skills = request.POST.get('skills')
         certifications = request.POST.get('certifications')
+        phone_number = request.POST.get('phone-number')
+        bio = request.POST.get('bio')
         cv = request.POST.get('cv')
 
         user = User.objects.get(username=username)
 
         profile = UserProfile.objects.get(user=user)
         profile.address= address
-        # profile.date_of_birth=date_of_birth
+        profile.age = age
         profile.education = education
         profile.work_experience = work_experience
         profile.skills = skills
         profile.certifications = certifications
         profile.cv = cv
+        profile.phone_number = phone_number
+        profile.bio = bio
 
         profile.save()
 
