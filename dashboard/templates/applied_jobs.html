@@ -11,8 +11,8 @@
     {% block content %}
     <h1 class="text-2xl leading-snug font-extrabold text-black truncate mb-4 sm:mb-0">Jobs Applied</h1>
 
-        {% for item in jobApplications %}
-        {% for jobpost in jobPosts %}
+    {% for jobpost in jobPosts %}
+    {% for item in jobApplications %}
             <div>
                     <div class="max-w-3xl ml-64">
                         <div class="flex flex-col gap-2 ml">

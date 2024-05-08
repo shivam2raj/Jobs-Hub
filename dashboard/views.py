@@ -36,7 +36,6 @@ def create_job(request, username):
 def job_list(request, username):
 
     jobposts = Jobpost.objects.all()
-    print(jobposts)
     username = request.user.username
 
     users = User.objects.filter(username=username)
@@ -46,6 +45,8 @@ def job_list(request, username):
         jobpostid = request.POST.get('JobpostId')
 
         if JobApplication.objects.filter(JobpostId=jobpostid, UserApplied=username).exists():
+            print("control reaches here")
+            return redirect('/' + username + '/job_list')
 
             messages.error(request, 'User has already applied')
         else:
@@ -63,6 +64,7 @@ def applied_jobs(request, username):
     job_applications = JobApplication.objects.filter(UserApplied=username)
 
     job_posts = Jobpost.objects.filter(id__in=[job_application.JobpostId for job_application in job_applications])
+    print(job_posts)
 
     context = {'jobApplications': job_applications, 'jobPosts': job_posts}
     return render(request, 'applied_jobs.html', context)

@@ -35,16 +35,18 @@
                                 </div>
                                 <!-- More link -->
                                 <input type="hidden" value={{jobpost.id}} name="JobpostId">
-                                {% if jobapplications %}
+                                <input type="submit" value="Apply" class="bg-black self-center rounded-lg text-gray-50 py-2 block px-8 font-bold">
+                                {% comment %} {% if jobapplications %}
                                 {% for jobApplication in jobapplications %}
-                                    {% if jobApplication.JobpostId == jobpost.id %}
+                                    {% if jobApplication.UserApplied == jobpost.id %}
                                         <input type="submit" value="Applied" class="bg-black self-center rounded-lg text-gray-50 py-2 block px-8 font-bold" disabled>
+                                    {% else %}
                                         <input type="submit" value="Applied" class="bg-black self-center rounded-lg text-gray-50 py-2 block px-8 font-bold">
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
                                 <input type="submit" value="Apply" class="bg-black self-center rounded-lg text-gray-50 py-2 block px-8 font-bold">
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                             
                             </div>
 
