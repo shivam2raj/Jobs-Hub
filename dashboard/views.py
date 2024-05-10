@@ -122,3 +122,16 @@ def job_list_rec(request, username):
 
     context = {'jobposts': jobposts, 'users': users}
     return render(request,'job-list-rec.html', context)
+
+def report(request):
+    jobpost_count = Jobpost.objects.count()
+    userprofile_count = UserProfile.objects.count()
+    jobapplication_count = JobApplication.objects.count()
+
+    counts = {
+        'jobpost_count': jobpost_count,
+        'userprofile_count': userprofile_count,
+        'jobapplication_count': jobapplication_count,
+    }
+
+    return render(request,'report.html',counts)

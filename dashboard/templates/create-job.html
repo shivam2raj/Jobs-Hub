@@ -7,22 +7,22 @@
     {% csrf_token %}
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="heading text-center font-bold text-2xl m-5 text-gray-800 bg-white">Create New Job Post</div>
-        <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-            <input class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text" id="title" name="title" required>
+        <div class="heading text-center font-bold text-2xl m-5 bg-white">Create New Job Post</div>
+        <div class="editor mx-auto w-10/12 flex flex-col border border-gray-300 p-4 shadow-lg max-w-2xl">
+            <input class="title border border-gray-300 p-2 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold  placeholder-black" spellcheck="false" placeholder="Title" type="text" id="title" name="title" required>
 
-            <textarea class="description bg-gray-100 sec p-3 h-30 border border-gray-300 mb-4 outline-none" spellcheck="false"  name="jobDescription" placeholder="Describe everything about job here"></textarea>
+            <textarea class="description sec p-3 h-30 border border-gray-300 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold  placeholder-black" spellcheck="false"  name="jobDescription" placeholder="Describe everything about job here"></textarea>
 
-            <input type="text" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false"  id="jobRequirement" name="jobRequirement" placeholder="Describe the requirement of job" required>
+            <input type="text" class=" border border-gray-300 p-2 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold  placeholder-black" spellcheck="false"  id="jobRequirement" name="jobRequirement" placeholder="Describe the requirement of job" required>
             
-            <input type="number" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false"  id="salary" name="salary" placeholder="Salary" required>
+            <input type="number" class=" border border-gray-300 p-2 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold placeholder-black" spellcheck="false"  id="salary" name="salary" placeholder="Salary" required>
 
-            <input type="text" id="jobtype" name="jobtype" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Job Type" required>
+            <input type="text" id="jobtype" name="jobtype" class="border border-gray-300 p-2 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold placeholder-black" spellcheck="false" placeholder="Job Type" required>
 
-            <input type="text" id="location" name="location" class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Location" required>
+            <input type="text" id="location" name="location" class="border border-gray-300 p-2 mb-4 outline-none bg-[#D0A2F7] text-black font-semibold placeholder-black" spellcheck="false" placeholder="Location" required>
             <!-- Button -->
             <div class="buttons flex justify-end">
-                <div class="btn border border-indigo-500 p-1 px-4 mt-2 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"><input class="bg-indigo-500" type="submit" value="Post"></div>
+                <div class="btn border border-indigo-500 p-1 px-4 mt-2 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 "><input class="bg-indigo-500" type="submit" value="Post"></div>
             </div>
         </div>
 

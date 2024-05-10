@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard</title>
+        <script src="https://cdn.tailwindcss.com"></script>  
+    </head>
+    <body class="font-poppins antialiased ">
+        <!-- navbar -->
+        <div class="w-full h-16 bg-black fixed ">
+          <!-- component -->
+      <nav class="bg-black w-100 px-8 md:px-auto">
+          <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
+              <!-- Logo -->
+              <div class="text-indigo-500 md:order-1">
+                  <!-- Heroicon - Chip Outline -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+              </div>
+              <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
+                  <ul class="flex font-semibold justify-between">
+                      <!-- Active Link = text-indigo-500
+                      Inactive Link = hover:text-indigo-500 -->
+                      <li class="md:px-4 md:py-2 hover:text-[#A10BE8] text-white"><a href="#">Report</a></li>
+                  </ul>
+              </div>
+              <div class="order-2 md:order-3">
+                  <a href="/recruiter/logout"><button class="px-4 py-2 bg-[#A10BE8] hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
+                      <!-- Heroicons - Login Solid -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                      <span>Log Out</span>
+                  </button>
+                </a>
+              </div>
+          </div>
+      </nav>
+        </div>
+        <div class="h-full w-screen flex flex-row gap-6" x-data="{ sidenav: true }">
+          <button @click="sidenav = true"
+            class="p-2 border-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden">
+            <svg class="w-5 h-5 fill-current" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+          <div id="sidebar"
+            class="bg-black h-screen md:block shadow-xl px-6 fixed"
+            x-show="sidenav" @click.away="sidenav = false">
+            <div class="space-y-6 md:space-y-10 mt-10">
+              <h1 class="font-bold text-4xl text-center md:hidden">
+                D<span class="text-teal-600">.</span>
+              </h1>
+              <h1 class="hidden md:block font-bold text-sm md:text-xl text-center text-white">
+                JobsHub<span class="text-teal-600">.</span>
+              </h1>
+              <div id="profile" class="space-y-3">
+                <img
+                  src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="Avatar user" class="w-10 md:w-16 rounded-full mx-auto" />
+                <div>
+                  <h2 class="font-medium md:text-xl text-center text-[#A10BE8]">
+                    {{user.username}}
+                  </h2>
+                  <p class="text-xs text-white text-center italic">admin</p>
+
+                </div>
+              </div>
+            </div>
+            <div id="menu" class="flex flex-col space-y-2 mt-6">
+              <a href="/report/"
+              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
+                <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z">
+                  </path>
+                </svg>
+                <span class="">Report</span>
+              </a>
+              {% comment %} <a href="/{{user.username}}/create_job/"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
+                <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path fill-rule="evenodd"
+                    d="M4 5a2 2 0 012 2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="">Create Job Posts </span>
+              </a> {% endcomment %}
+              {% comment %} <a href="/{{user.username}}/user_profile/"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+                <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                  <path
+                    d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                  </path>
+                </svg>
+                <span class="">Profile</span> {% endcomment %}
+              </a>
+              <a href="/recruiter/logout"
+                class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
+                <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                  <path
+                    d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z">
+                  </path>
+                </svg>
+                <span class="">Log Out</span>
+              </a>
+            </div>
+          </div>
+      
+          <div class="w-[80%] px-24 m-24">
+            <main>
+                <h1>Object Counts</h1>
+                <ul>
+                    <li>Job Posts: {{ jobpost_count }}</li>
+                    <li>User Profiles: {{ userprofile_count }}</li>
+                    <li>Job Applications: {{ jobapplication_count }}</li>
+                </ul>
+        
+            </main>
+          </div>
+        </div>  
+
+    
+
+</body>
+</html>

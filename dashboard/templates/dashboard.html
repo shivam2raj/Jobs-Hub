@@ -26,9 +26,9 @@
                   <!-- Active Link = text-indigo-500
                   Inactive Link = hover:text-indigo-500 -->
                   {% comment %} <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="/{{user.username}}/recruiter_dashboard">Dashboard</a></li> {% endcomment %}
-                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="/{{user.username}}/job_list_rec/">Explore Jobs</a></li>
-                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="#">About</a></li>
-                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8]"><a href="#">Contact</a></li>
+                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8] text-white"><a href="/{{user.username}}/job_list_rec/">Explore Jobs</a></li>
+                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8] text-white"><a href="#">About</a></li>
+                  <li class="md:px-4 md:py-2 hover:text-[#A10BE8] text-white"><a href="#">Contact</a></li>
               </ul>
           </div>
           <div class="order-2 md:order-3">
@@ -87,7 +87,7 @@
             <span class="">Dashboard</span> {% endcomment %}
           </a>
           <a href="/{{user.username}}/job_list_rec/"
-          class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+          class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
             <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -97,7 +97,7 @@
             <span class="">Jobs</span>
           </a>
           <a href="/{{user.username}}/create_job/"
-            class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+            class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
             <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
@@ -119,7 +119,7 @@
             <span class="">Profile</span> {% endcomment %}
           </a>
           <a href="/recruiter/logout"
-            class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
+            class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-[#A10BE8] hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out text-white">
             <svg class="w-6 h-6 fill-current inline-block" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
