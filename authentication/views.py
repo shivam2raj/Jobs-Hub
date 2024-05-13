@@ -161,6 +161,10 @@ def recruiter_login_page(request):
 
 	return render(request, 'recruiter_login.html')
 
+def about_us(request):
+
+	return render(request, "about.html")
+
 
 
 

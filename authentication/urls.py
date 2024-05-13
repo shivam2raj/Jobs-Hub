@@ -11,6 +11,7 @@ urlpatterns = [
 	path('user/register/', user_register_page, name='user_register'), 
 	path('recruiter/register/', recruiter_register_page, name='recruiter_register'), 
 	path('', home, name='home'), 
+	path('about/', about_us, name='about_us'), 
 ]
 
 

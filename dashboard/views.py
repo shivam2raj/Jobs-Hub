@@ -135,3 +135,7 @@ def report(request):
     }
 
     return render(request,'report.html',counts)
+
+def contact_us(request):
+
+    return render(request,'contact-us.html')

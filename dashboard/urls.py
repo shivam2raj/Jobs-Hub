@@ -10,6 +10,6 @@ urlpatterns = [
     path('<username>/job_list_rec/', views.job_list_rec, name='job_list_rec'),
     path("user/logout/",user_logout_view,name="user_logout_view"),
     path("recruiter/logout/",recruiter_logout_view,name="recruiter_logout_view"),
-    path("report/",views.report,name="report_view")
-
+    path("report/",views.report,name="report_view"),
+    path("contact/",views.contact_us,name="contact_us"),
 ]
